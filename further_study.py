@@ -117,7 +117,13 @@ def custom_remove(input_list, value):
         True
 
     """
-    temp = input_list[value]
+    temp = None
+    count = 0
+    for item in input_list:
+        count += 1
+        if item == value and temp == None:
+            temp = count-1
+
     input_list[:] = input_list[:temp] + input_list[temp + 1:]
 
 
@@ -137,7 +143,9 @@ def custom_pop(input_list):
 
     """
 
-    return None
+    temp = input_list[-1]
+    input_list[:] = input_list[:-1]
+    return temp
 
 
 def custom_index(input_list, value):
@@ -152,8 +160,14 @@ def custom_index(input_list, value):
         1
 
     """
+    temp = None
+    count = 0
+    for item in input_list:
+        count += 1
+        if item == value and temp == None:
+            temp = count-1
 
-    return 0
+    return temp
 
 
 def custom_count(input_list, value):
@@ -168,8 +182,12 @@ def custom_count(input_list, value):
         2
 
     """
+    count = 0
+    for item in input_list:
+        if item == value:
+            count += 1
 
-    return 0
+    return count
 
 
 def custom_reverse(input_list):
@@ -187,8 +205,23 @@ def custom_reverse(input_list):
         True
 
     """
+    count = 0
+    result = []
+    for item in input_list:
+        count += 1
 
-    pass
+    for item in input_list:
+        result = result + input_list[count-1:count]
+        count -= 1
+
+    input_list = result
+
+    # result = []
+    # for item in input_list[::-1]:
+    #     result = result + [item]
+    # input_list = result
+
+  #  input_list[:] = input_list[::-1]
 
 
 def custom_contains(input_list, value):
@@ -207,8 +240,11 @@ def custom_contains(input_list, value):
         True
 
     """
+    for item in input_list:
+        if item == value:
+            return True
+    return False
 
-    return None
 
 
 def custom_equality(some_list, another_list):
@@ -227,7 +263,26 @@ def custom_equality(some_list, another_list):
 
     """
 
-    return None
+    count_1 = 0
+    count_2 = 0
+
+    for item in some_list:
+        count_1 += 1
+
+    for item in another_list:
+        count_2 += 1
+
+    if count_1 != count_2:
+        return False
+
+    
+
+
+
+    # if some_list == another_list:
+    #     return True
+    # else:
+    #     return False
 
 
 ##############################################################################
